@@ -1,6 +1,6 @@
 name: Duplicate pull requests into main to develop for branches starting with "hotfix-"
 on:
-  pull-request:
+  pull_request:
     branches:
       - main
     types:
@@ -16,6 +16,10 @@ jobs:
       - name: Duplicate pull request
         if: |
           startsWith(github.event.pull_request.head.ref, 'hotfix-')
-        run: gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Duplicated PR. Merge ${{ github.event.pull_request.head.ref }} into develop' --body 'Created by Github action'
+        run: |
+          pwd
+          ls -a
+          cd ..
+          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Develop duplicate. ${{ github.event.pull_request.title }}' --body '${{ github.event.pull_request.body }}' -R ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
