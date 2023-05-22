@@ -1,0 +1,25 @@
+name: Duplicate pull requests into main to develop for branches starting with "hotfix-"
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+
+jobs:
+  duplicate:
+    name: Duplicate pull request
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Duplicate pull request
+        if: |
+          startsWith(github.event.pull_request.head.ref, 'hotfix-')
+        run: |
+          pwd
+          ls -a
+          cd ..
+          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Develop duplicate. ${{ github.event.pull_request.title }}' --body '${{ github.event.pull_request.body }}' -R ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
