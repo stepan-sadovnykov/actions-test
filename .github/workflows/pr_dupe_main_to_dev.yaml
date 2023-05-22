@@ -5,6 +5,8 @@ on:
       - main
     types:
       - opened
+      - reopened
+#    todo: leave only "opened" on release
 
 jobs:
   duplicate:
@@ -18,6 +20,7 @@ jobs:
           startsWith(github.event.pull_request.head.ref, 'hotfix-')
         run: |
           pwd
+          ls -a
           cd ..
           gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Duplicated PR. Merge ${{ github.event.pull_request.head.ref }} into develop' --body 'Created by Github action'
         env:
