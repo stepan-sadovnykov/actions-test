@@ -1,6 +1,6 @@
 name: Duplicate pull requests into main to develop for branches starting with "hotfix-"
 on:
-  pull-request:
+  pull_request:
     branches:
       - main
     types:
