@@ -22,6 +22,6 @@ jobs:
           pwd
           ls -a
           cd ..
-          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Duplicated PR. Merge ${{ github.event.pull_request.head.ref }} into develop' --body 'Created by Github action'
+          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Duplicated PR. Merge ${{ github.event.pull_request.head.ref }} into develop' --body 'Created by Github action' -p action-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
