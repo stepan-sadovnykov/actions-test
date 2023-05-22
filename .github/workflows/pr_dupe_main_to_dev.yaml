@@ -22,7 +22,7 @@ jobs:
           pwd
           ls -a
           cd ..
-          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Develop duplicate. ${{ github.event.pull_request.title }}' --body '${{ github.event.pull_request.body }}' -R ${{ github.event.repository }}
+          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Develop duplicate. ${{ github.event.pull_request.title }}' --body '${{ github.event.pull_request.body }}' -R ${{ github.repository }}
 
 #           -p action-test
         env:
