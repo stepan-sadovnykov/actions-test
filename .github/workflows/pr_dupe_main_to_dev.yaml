@@ -17,9 +17,6 @@ jobs:
         if: |
           startsWith(github.event.pull_request.head.ref, 'hotfix-')
         run: |
-          pwd
-          ls -a
-          cd ..
-          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title 'Develop duplicate. ${{ github.event.pull_request.title }}' --body '${{ github.event.pull_request.body }}' -R ${{ github.repository }}
+          gh pr create -B develop -H ${{ github.event.pull_request.head.ref }} --title '${{ github.event.pull_request.title }}' --body '${{ github.event.pull_request.body }}' -R ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
